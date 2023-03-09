@@ -16,15 +16,17 @@ const HomeText="Home";
 const AboutText="About-TextUtils";
   
 function App() {
-  const [mode, setMode] = useState('light'); // Whether dark mode is enabled or not
+  const [mode, setMode] = useState('light'); // Whether dark mode is enabled or not for the page
   const [alert, setAlert] = useState(null);
   const [styling, setStyling] = useState(null);
 
+  //This Function is to make first letter capital and rest small
   const capitalize = (word)=>{
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
 }
 
+//This function created for showing alert message 
   const showAlert = (message, type)=>{
       setAlert({
         msg: message,
@@ -34,37 +36,44 @@ function App() {
           setAlert(null);
       }, 1500);
   }
-  const showStling = (color, height)=>{
+  //This function created for changing style of single element in textform
+  const showStyling = (color, height)=>{
     setStyling({
       color: color,
       height: height
     })
 }
+
+//This function created for removing class style value 
 const removeBodyClasses=()=>
 {
   document.body.classList.remove('bg-info');
   document.body.classList.remove('bg-danger');
   document.body.classList.remove('bg-success');
   document.body.classList.remove('bg-warning');
+  showStyling.remove();
 }
 
+//Toggle function for dark and light mode
   const toggleMode = ()=>{
     if(mode === 'dark'){
       removeBodyClasses();
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showStling('green','2');
+      showStyling('green','2');
       showAlert("Light mode has been enabled", "success");
     }
-    if(mode === 'light')
+    else
     {
       removeBodyClasses();
       setMode('dark');
       document.body.style.backgroundColor = '#706767';
-      showStling('red','2');
+      showStyling('red','2');
       showAlert("Dark mode has been enabled", "success");
     }
   }
+
+  //Function to toggle screen brightness with different colors
   const colorMode = (cls)=>{
     if(mode === 'light')
     {
