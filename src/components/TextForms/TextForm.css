@@ -1,3 +1,12 @@
 .textStyle{
-    color: rgb(196, 56, 56);
+    color: rgb(77, 5, 5);
+    margin-bottom: 15px;
+}
+.previewStyle{
+    color: rgb(71, 6, 6);
+}
+.headingStyle
+{
+    color: 'green';
+    margin-bottom: 15px;
 }

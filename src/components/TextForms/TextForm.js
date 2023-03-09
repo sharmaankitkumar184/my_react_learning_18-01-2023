@@ -17,6 +17,11 @@ const handleDownClick=()=>{
     setText(lowerText)
     props.showAlert("Converted to lowercase!", "success");
 }
+const handleClearClick = ()=>{ 
+  let newText = '';
+  setText(newText);
+  props.showAlert("Text Cleared!", "success");
+}
 const handleExtraSpaces=()=>{
   let newText=text.split(/[ ]+/);
   setText(newText.join(" "));
@@ -24,21 +29,22 @@ const handleExtraSpaces=()=>{
 }
   return (
     <>
-<div className='container' style={{color: props.mode==='dark'?'white':'#042743'}}>
-        <h1 className='my-3'>{props.heading}</h1>
+<div className='container' style={{color: props.mode==='dark'?'white':'#706767'}}>
+        <h1 className='my-3' style={{color: props.mode==='dark'?'white':'#13466e'}}>{props.heading}</h1>
       <div className='mb-3'>
-        <textarea className='form-control' value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'#13466e':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"></textarea>
+        <textarea className='form-control' value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'#7d8a93':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"></textarea>
       </div>
-      <button disabled={text.length===0} className='btn btn-primary' onClick={handleUpClick}>Convert to Uppercase</button>
-      <button disabled={text.length===0} className='btn btn-primary mx-1' onClick={handleDownClick}>Convert to Lowercase</button>
-      <button  disabled={text.length===0}className='btn btn-primary mx-1' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+      <button disabled={text.length===0} className='btn btn-primary mx-1 my-1' onClick={handleUpClick}>Convert to Uppercase</button>
+      <button disabled={text.length===0} className='btn btn-primary mx-1 my-1' onClick={handleDownClick}>Convert to Lowercase</button>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>Clear Text</button>
+      <button disabled={text.length===0}className='btn btn-primary mx-1 my-1' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
     </div>
-    <div className='container my-2' style={{color: props.mode==='dark'?'white':'#042743'}}>
-      <h1 style={{ color: 'green' ,lineHeight : 2}}>Your text summary:</h1>
-    <h5 className='textStyle'>{text.split(" ").length} Words and {text.length} Characters</h5>
-    <p style={props.styling}>{0.008 * text.split(" ").length} Minutes Read</p>
-    <h2 style={{ color: 'green'}}>Preview</h2>
-    <p style={{ color: 'brown'}}>{text.length>0?text:"Nothing to preview!"}</p>
+<div className='container my-2' style={{color: props.mode==='dark'?'white':'#042743'}}>
+      <h1 className='headingStyle'>Your text summary:</h1>
+      <h5 className='textStyle'>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Words and {text.length} Characters</h5>
+      <p style={props.styling}><strong>{0.008 * text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Minutes Read</strong></p>
+      <h2 className='headingStyle'>Preview</h2>
+      <p className='previewStyle'>{text.length>0?text:"Nothing to preview!"}</p>
     </div>
     </>
   )
