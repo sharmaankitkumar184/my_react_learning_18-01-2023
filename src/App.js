@@ -51,7 +51,6 @@ const removeBodyClasses=()=>
   document.body.classList.remove('bg-danger');
   document.body.classList.remove('bg-success');
   document.body.classList.remove('bg-warning');
-  showStyling.remove();
 }
 
 //Toggle function for dark and light mode
